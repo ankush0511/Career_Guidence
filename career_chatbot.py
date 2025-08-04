@@ -8,19 +8,12 @@ from langchain_groq import ChatGroq
 import os
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
-# from langchain_openai import OpenAIEmbeddings
-
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-from openai import OpenAI
 load_dotenv()
 
-os.environ["OPENAI_API_KEY"] = os.getenv("A4F_API_KEY")
-os.environ["OPENAI_API_BASE"] = "https://api.a4f.co/v1" # Key configuration
-client = OpenAI(
-    api_key=os.getenv("A4F_API_KEY"),
-    base_url=os.getenv("A4F_BASE_URL"),
-)
+GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
+# GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+
 class CareerChatAssistant:
     def __init__(self, career_system=None):
         """Initialize the career chat assistant with the career guidance system"""
