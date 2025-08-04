@@ -9,4 +9,5 @@ crewai
 langchain-groq
 langchain-google-genai
 python-dotenv
-faiss-gpu
+faiss-cpu
+google-search-results

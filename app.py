@@ -4,10 +4,16 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+
 
 # Import the career_guidance_system
 from career_guidance_system import CareerGuidanceSystem
 from career_chatbot import display_chat_interface
+
 
 # Set page config
 st.set_page_config(
@@ -59,6 +65,8 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+# groq_api_key=os.getenv('GROQ_API_KEY')
+# serpapi_key=os.getenv('SERPAPI_API_KEY')
 
 # Initialize session state variables
 if "groq_api_key" not in st.session_state:
@@ -106,7 +114,8 @@ with st.sidebar:
                     st.info("Web search capabilities enabled! The system will provide up-to-date information on careers.")
                 else:
                     st.warning("Web search capabilities are disabled. For the best experience, provide a SerpAPI key.")
-
+    
+        
     # User profile section
     st.markdown("### 👤 Your Profile")
     user_name = st.text_input("Name", value=st.session_state.user_profile.get("name", ""))
@@ -294,8 +303,12 @@ with tab1:
                     research = st.session_state.career_analysis.get("research", "")
                     if isinstance(research, str) and research:
                         st.markdown(f"""
+                            <div class="career-section">
                             <h3 style="color: #82B1FF; margin-top: 0;">Overview of {st.session_state.selected_career}</h3>
+                             <div style="font-size: 16px; line-height: 1.6;">
                                 {research}
+                            </div>
+                        </div>
                         """, unsafe_allow_html=True)
 
 # Tab 2: Market Analysis
@@ -316,8 +329,12 @@ with tab2:
             
             # Display the market analysis as Markdown
             st.markdown(f"""
+              <div class="market-section">
                 <h4 style="margin-top: 0;">📊 Market Analysis</h4>
+                <div style="font-size: 16px; line-height: 1.6;">
                     {market_analysis}
+                </div>
+            </div>
             """, unsafe_allow_html=True)
             
             # Job growth visualization
@@ -473,8 +490,12 @@ with tab3:
             
             # Display roadmap
             st.markdown(f"""
+                <div class="roadmap-section">
                 <h4 style="margin-top: 0;">📚 Learning Roadmap</h4>
+                <div style="font-size: 16px; line-height: 1.6;">
                     {roadmap}
+                </div>
+            </div>
             """, unsafe_allow_html=True)
             
             # Create a simple timeline visualization
@@ -554,8 +575,12 @@ with tab4:
             
             # Display insights
             st.markdown(f"""
+                <div class="insights-section">
                 <h4 style="margin-top: 0;">💡 Industry Insights</h4>
+                <div style="font-size: 16px; line-height: 1.6;">
                     {insights_text}
+                </div>
+            </div>
             """, unsafe_allow_html=True)
             
             # Display skills visualization
